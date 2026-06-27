@@ -1,16 +1,69 @@
-# React + Vite
+# UPI Balance Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Live App: https://upi-tracker-five.vercel.app
 
-Currently, two official plugins are available:
+A smart personal finance tracker that goes beyond simple expense logging. It shows the running balance before and after every transaction, just like a real bank statement, combined with AI-powered spending insights and category breakdowns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Built for HACKHAZARDS '26 (Cloud/Dev Tools Track) by Rohan Kumar Mishra.
 
-## React Compiler
+## The Problem
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Most personal finance apps show transactions as a flat list of amounts. They don't clearly show how your balance evolved transaction by transaction, which makes it hard to spot exactly when and why your balance dropped or grew. People juggling multiple UPI apps also have no single place to see a unified view of their spending.
 
-## Expanding the Oxlint configuration
+## The Solution
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+UPI Balance Tracker gives you:
+- A clear before-to-after balance for every single transaction, like a real passbook or statement
+- Manual transaction entry for quick logging
+- CSV statement upload with automatic parsing, works with common Indian bank statement formats
+- AI-generated spending insights that analyze your transaction patterns
+- A category breakdown chart to visualize where your money goes
+
+## Tech Stack
+
+Frontend: React 19, Vite, Recharts, PapaParse, custom fintech-themed dark UI, deployed on Vercel.
+
+Backend: Node.js, Express, secure proxy pattern for AI insight generation, deployed on Render.
+
+AI: Built for the Anthropic Claude API. Currently running in mock mode for the live demo at zero API cost. Fully ready to connect to live Claude responses by adding an API key on the backend, no code changes required.
+
+## Key Features
+
+- Dashboard with current balance, total credited, and total spent
+- Before-to-after balance chain on every transaction (the core differentiator)
+- Category-wise spending pie chart
+- AI-generated financial insights based on real transaction data
+- Manual transaction entry with debit/credit toggle
+- CSV statement upload with flexible column auto-detection
+- Clean, trustworthy fintech-style dark UI
+
+## Architecture
+
+React Frontend (Vercel) talks to Express Backend (Render) which talks to Claude API (Anthropic), and responses flow back the same way.
+
+The backend acts as a secure intermediary. The frontend never exposes API keys, following the same architecture pattern used in production fintech applications.
+
+## Running Locally
+
+Backend:
+cd upi-tracker-server
+npm install
+node index.js
+Runs on http://localhost:3002
+
+Frontend:
+cd upi-tracker
+npm install
+npm run dev
+Runs on http://localhost:5173
+
+## Links
+
+Live App: https://upi-tracker-five.vercel.app
+Frontend Repo: https://github.com/rohanmishra29/upi-tracker
+Backend Repo: https://github.com/rohanmishra29/upi-tracker-server
+
+## Built For
+
+HACKHAZARDS '26, Cloud/Dev Tools Track
+By Rohan Kumar Mishra (@rohanmishra29 on GitHub)
