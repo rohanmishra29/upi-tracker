@@ -1,69 +1,101 @@
 # UPI Balance Tracker
 
-Live App: https://upi-tracker-five.vercel.app
+## Problem and Domain
 
-A smart personal finance tracker that goes beyond simple expense logging. It shows the running balance before and after every transaction, just like a real bank statement, combined with AI-powered spending insights and category breakdowns.
+Most personal finance apps show transactions as a flat list of amounts. They do not clearly show how a balance evolved transaction by transaction, which makes it hard to spot exactly when and why money moved. People juggling multiple UPI apps also have no single place to see a unified view of their spending.
 
-Built for HACKHAZARDS '26 (Cloud/Dev Tools Track) by Rohan Kumar Mishra.
+Themes Selected: Work, Finance & Digital Economy, Human Experience & Productivity
 
-## The Problem
+## Objective
 
-Most personal finance apps show transactions as a flat list of amounts. They don't clearly show how your balance evolved transaction by transaction, which makes it hard to spot exactly when and why your balance dropped or grew. People juggling multiple UPI apps also have no single place to see a unified view of their spending.
+Target users: anyone managing personal UPI transactions across multiple apps who wants clarity on where their money goes.
 
-## The Solution
+Pain point: existing trackers show amounts in isolation, without a clear running balance, and offer no real insight into spending patterns.
 
-UPI Balance Tracker gives you:
-- A clear before-to-after balance for every single transaction, like a real passbook or statement
-- Manual transaction entry for quick logging
-- CSV statement upload with automatic parsing, works with common Indian bank statement formats
-- AI-generated spending insights that analyze your transaction patterns
-- A category breakdown chart to visualize where your money goes
+Value provided: a before-to-after balance shown on every single transaction, just like a real bank passbook, combined with AI-generated spending insights and a category breakdown chart.
+
+## Team and Approach
+
+Team Name: SoloStack
+
+Team Members:
+- Rohan Kumar Mishra (GitHub: rohanmishra29)
+
+Approach:
+- Chose this problem after noticing that no common UPI app clearly shows the balance before and after each transaction, which is the single most useful piece of context when reviewing spending history.
+- Key challenge addressed: building a CSV statement parser flexible enough to handle different bank statement column naming conventions, such as Withdrawal Amt versus Debit, without requiring the user to reformat their file.
+- Iteration: the running balance logic had to be recomputed in chronological order every time a transaction was added or imported, rather than appended naively, to stay correct regardless of insertion order.
 
 ## Tech Stack
 
-Frontend: React 19, Vite, Recharts, PapaParse, custom fintech-themed dark UI, deployed on Vercel.
+Core Technologies Used:
+- Frontend: React 19, Vite, Recharts for visualization, PapaParse for CSV parsing
+- Backend: Node.js, Express
+- Database: None, transaction data is held in client-side state
+- APIs: Built for the Anthropic Claude API
+- Hosting: Vercel for frontend, Render for backend
 
-Backend: Node.js, Express, secure proxy pattern for AI insight generation, deployed on Render.
-
-AI: Built for the Anthropic Claude API. Currently running in mock mode for the live demo at zero API cost. Fully ready to connect to live Claude responses by adding an API key on the backend, no code changes required.
+Additional Technologies Used:
+- AI / ML: Claude API integration for generating spending insights based on real transaction data. Currently running in a mock response mode for the live demo at zero API cost, with the real Claude integration fully wired and ready to activate by adding an API key.
 
 ## Key Features
 
-- Dashboard with current balance, total credited, and total spent
-- Before-to-after balance chain on every transaction (the core differentiator)
+- Dashboard showing current balance, total credited, and total spent
+- Before-to-after balance shown on every transaction
 - Category-wise spending pie chart
 - AI-generated financial insights based on real transaction data
-- Manual transaction entry with debit/credit toggle
+- Manual transaction entry with a debit or credit toggle
 - CSV statement upload with flexible column auto-detection
-- Clean, trustworthy fintech-style dark UI
+- Clean, fintech-style dark UI
 
-## Architecture
+## Demo and Deliverables
 
-React Frontend (Vercel) talks to Express Backend (Render) which talks to Claude API (Anthropic), and responses flow back the same way.
+- Demo Video Link: to be added
+- Deployment Link: https://upi-tracker-five.vercel.app
+- Pitch Deck: to be added
 
-The backend acts as a secure intermediary. The frontend never exposes API keys, following the same architecture pattern used in production fintech applications.
+## Tasks and Bonus Checklist
 
-## Running Locally
+- Mandatory social task: pending
+- Bonus Task 1, badge sharing: pending
+- Bonus Task 2, blog or article: not attempted
 
-Backend:
+## How to Run the Project
+
+Requirements: Node.js v18 or higher, npm
+
+Backend setup:
 cd upi-tracker-server
 npm install
 node index.js
 Runs on http://localhost:3002
 
-Frontend:
+Frontend setup:
 cd upi-tracker
 npm install
 npm run dev
 Runs on http://localhost:5173
 
+## Future Scope
+
+- Direct bank account integration via Account Aggregator APIs
+- Support for PDF statement parsing in addition to CSV
+- Budget goals and spending alerts
+- Multi-currency support
+
+## Resources and Credits
+
+- Built with the Anthropic Claude API
+- React, Vite, Recharts, PapaParse, Express
+
+## Final Words
+
+This project came directly from a real personal frustration with how little visibility typical UPI apps give into running balances. Building the CSV import to gracefully handle messy, inconsistent bank statement formats turned out to be the most genuinely useful engineering problem in the whole build.
+
 ## Links
 
-Live App: https://upi-tracker-five.vercel.app
-Frontend Repo: https://github.com/rohanmishra29/upi-tracker
-Backend Repo: https://github.com/rohanmishra29/upi-tracker-server
+- Live App: https://upi-tracker-five.vercel.app
+- Frontend Repo: https://github.com/rohanmishra29/upi-tracker
+- Backend Repo: https://github.com/rohanmishra29/upi-tracker-server
 
-## Built For
-
-HACKHAZARDS '26, Cloud/Dev Tools Track
-By Rohan Kumar Mishra (@rohanmishra29 on GitHub)
+Built for HACKHAZARDS '26 by Rohan Kumar Mishra, GitHub: rohanmishra29
